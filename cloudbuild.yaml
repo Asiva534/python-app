@@ -25,7 +25,7 @@ steps:
 # ---------------------------------------
 # Step 3 - Terraform Init
 # ---------------------------------------
-- name: 'hashicorp/terraform:7.42'
+- name: 'hashicorp/terraform:1.6.6'
   dir: 'terraform'
   entrypoint: 'sh'
   args:
@@ -36,7 +36,7 @@ steps:
 # ---------------------------------------
 # Step 4 - Terraform Plan
 # ---------------------------------------
-- name: 'hashicorp/terraform:7.42'
+- name: 'hashicorp/terraform:1.6.6'
   dir: 'terraform'
   entrypoint: 'sh'
   args:
@@ -49,7 +49,7 @@ steps:
 # ---------------------------------------
 # Step 5 - Terraform Apply
 # ---------------------------------------
-- name: 'hashicorp/terraform:7.42'
+- name: 'hashicorp/terraform:1.6.6'
   dir: 'terraform'
   entrypoint: 'sh'
   args:
