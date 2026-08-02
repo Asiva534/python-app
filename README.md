@@ -11,6 +11,7 @@ A sample project demonstrating how to deploy a Python application to **Google Cl
 * Infrastructure as Code using Terraform
 * CI/CD pipeline using Cloud Build
 * GitHub integration
+* 
 
 ---
 
