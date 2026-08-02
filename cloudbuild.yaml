@@ -11,6 +11,8 @@ steps:
       'asia-south1-docker.pkg.dev/$PROJECT_ID/demo/demo:$SHORT_SHA',
       '.'
     ]
+options:
+ logging: CLOUD_LOGGING_ONLY
 
 # ---------------------------------------
 # Step 2 - Push Image
