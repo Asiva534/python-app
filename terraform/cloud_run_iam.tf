@@ -4,7 +4,7 @@ resource "google_cloud_run_v2_service_iam_member" "public" {
 
   location = var.region
 
-  name = google_cloud_run_v2_service.app.name
+  name = google_cloud_run_v2_service.demo.name
 
   role = "roles/run.invoker"
 
