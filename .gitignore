@@ -1,9 +1,23 @@
+# Python
+venv/
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
 
-venv/
-.env
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
 
-.gitignore
+# Terraform variables
+*.tfvars
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

@@ -1,0 +1,63 @@
+steps:
+
+# ---------------------------------------
+# Step 1 - Build Docker Image
+# ---------------------------------------
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    [
+      'build',
+      '-t',
+      'asia-south1-docker.pkg.dev/$PROJECT_ID/demo/demo:$SHORT_SHA',
+      '.'
+    ]
+
+# ---------------------------------------
+# Step 2 - Push Image
+# ---------------------------------------
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    [
+      'push',
+      'asia-south1-docker.pkg.dev/$PROJECT_ID/demo/demo:$SHORT_SHA'
+    ]
+
+# ---------------------------------------
+# Step 3 - Terraform Init
+# ---------------------------------------
+- name: 'hashicorp/terraform:1.6.6'
+  dir: 'terraform'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      terraform init
+
+# ---------------------------------------
+# Step 4 - Terraform Plan
+# ---------------------------------------
+- name: 'hashicorp/terraform:1.6.6'
+  dir: 'terraform'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      terraform plan \
+      -var="project_id=$PROJECT_ID" \
+      -var="image=asia-south1-docker.pkg.dev/$PROJECT_ID/demo/demo:$SHORT_SHA"
+
+# ---------------------------------------
+# Step 5 - Terraform Apply
+# ---------------------------------------
+- name: 'hashicorp/terraform:1.6.6'
+  dir: 'terraform'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      terraform apply -auto-approve \
+      -var="project_id=$PROJECT_ID" \
+      -var="image=asia-south1-docker.pkg.dev/$PROJECT_ID/demo/demo:$SHORT_SHA"
+
+images:
+- asia-south1-docker.pkg.dev/$PROJECT_ID/demo/demo:$SHORT_SHA
